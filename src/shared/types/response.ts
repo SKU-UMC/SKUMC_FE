@@ -1,0 +1,8 @@
+export interface ApiResponse<T> {
+    resultType: 'SUCCESS' | 'ERROR';
+    data: T;
+    error: {
+        code: string;
+        message: string;
+    } | null;
+}
