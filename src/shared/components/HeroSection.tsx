@@ -127,7 +127,7 @@ const HeroSection: React.FC = () => {
                             우리는 끊임없이 <span className="text-main font-bold">소통</span>하고 <span className="text-main font-bold">성장</span>합니다.
                         </p>
                         <p className="text-gray-400 max-w-lg mx-auto leading-relaxed">
-                            10기 SKUMC와 함께 새로운 여정을 시작하세요
+                            10기 SKUMC와 함께 새로운 여정을 시작하세요.
                         </p>
                     </div>
 
