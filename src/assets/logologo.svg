@@ -1,0 +1,25 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#filter0_d_1_1)">
+    <path d="M260 110L420 220L360 380L240 280L260 110Z" fill="url(#paint0_linear)" fill-opacity="0.8"/>
+    <path d="M200 130C250 130 310 170 320 250C330 330 250 420 180 440C120 455 100 400 100 400L220 300C220 300 180 250 180 200C180 150 200 130 200 130Z" fill="url(#paint1_linear)"/>
+    <path d="M80 340L210 260L280 400L150 480L80 340Z" fill="url(#paint2_linear)" fill-opacity="0.9"/>
+  </g>
+
+  <defs>
+    <linearGradient id="paint0_linear" x1="260" y1="110" x2="420" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4ADE80"/>
+      <stop offset="1" stop-color="#064E3B"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="100" y1="130" x2="320" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#065F46"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="80" y1="260" x2="280" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#064E3B"/>
+    </linearGradient>
+    <filter id="filter0_d_1_1" x="0" y="0" width="500" height="500" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+</svg>
