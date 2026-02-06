@@ -1,7 +1,5 @@
 
 import React from 'react';
-import { useEffect, useState } from 'react';
-import type { User } from '../shared/types/user';
 import type { ApplyFormResponse, ApplicationResponse } from '../shared/types/application';
 import { RECRUITMENT_PARTS } from '../shared/constants/constants';
 import { ROUTES } from '../shared/routes/routes';
@@ -9,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useApplyForms, useMyApplications } from '../shared/hooks/useRecruitment';
 import { storage } from '../shared/utils/sessionStorage';
+import CountdownTimer from '../shared/components/CountdownTimer';
 
 const ApplyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -31,8 +30,23 @@ const ApplyPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-16"
             >
-                <h2 className="text-4xl font-bold mb-4">신입 부원 모집</h2>
-                <p className="text-gray-500">10기 SKUMC와 함께할 열정 가득한 학우분들을 기다립니다.</p>
+                <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="inline-block px-4 py-1.5 text-[10px] md:text-xs font-black rounded-full border uppercase tracking-widest mb-6"
+                    style={{
+                        backgroundColor: '#fadd021a',
+                        color: '#fadd02',
+                        borderColor: '#fadd0240'
+                    }}
+                >
+                    Recruitment Coming Soon
+                </motion.span>
+
+                <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-900">10기 챌린저 모집</h2>
+                <p className="text-gray-500 text-lg">10기 SKUMC와 함께할 열정 가득한 학우분들을 기다립니다.</p>
+
+                <CountdownTimer />
             </motion.div>
 
             <div className="bg-gray-50 rounded-3xl p-8 mb-12 border">

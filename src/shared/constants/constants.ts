@@ -10,10 +10,10 @@ export const RECRUITMENT_PARTS = [
     { id: 1, name: 'Plan', color: '#FFB800' },
     { id: 2, name: 'Design', color: '#FF4D4D' },
     { id: 3, name: 'Android', color: '#3DDC84' },
-    { id: 4, name: 'iOS', color: '#000000' },
+    { id: 4, name: 'iOS', color: '#0A84FF' },
     { id: 5, name: 'Web', color: '#007ACC' },
     { id: 6, name: 'Spring Boot', color: '#6DB33F' },
-    { id: 7, name: 'Node.js', color: '#339933' }
+    { id: 7, name: 'Node.js', color: '#9d03fc' }
 ];
 
 export const EVENTS = [
@@ -21,3 +21,9 @@ export const EVENTS = [
     { name: 'UT Session', heightScale: 2 },
     { name: 'Demo Day', heightScale: 3 }
 ];
+
+export const RECRUITMENT_STATUS = {
+    COMING_SOON: 'COMING_SOON',
+    OPEN: 'OPEN',
+    CLOSED: 'CLOSED'
+}

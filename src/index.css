@@ -19,6 +19,12 @@
   --color-part-web: #3B82F6;
   --color-part-server: #22C55E;
 
+  /* Recruitment Colors */
+  --color-recruitment-open: #00FF55;
+  --color-recruitment-close: #333332;
+  --color-recruitment-coming-soon: #fadd02;
+
+
   /* Fonts */
   --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   --font-display: 'Paperlogy', var(--font-sans);
