@@ -5,5 +5,6 @@ export const ROUTES = {
     APPLY_FORM: '/apply/:formId',
     ADMIN: '/admin',
     ADMIN_ALL: '/admin/*',
-    SIGNUP: '/signup'
+    SIGNUP: '/signup',
+    AUTH_CALLBACK: '/auth/callback',
 };

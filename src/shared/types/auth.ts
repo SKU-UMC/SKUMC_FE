@@ -5,12 +5,16 @@ export interface ProfileRequest {
     notionEmail: string;
 }
 
-export interface AuthResponse {
-    accessToken: string;
-    refreshToken: string; // 쿠키로 올 수도 있지만 명시적으로 있다면
+export interface ApiResponse<T> {
+    resultType: 'SUCCESS' | 'FAIL' | 'ERROR';
+    error: any;
+    data: T;
+}
 
-    // User info response
-    userId: number; // or string based on User type
+export interface AuthResponse {
+    // Tokens are likely handled via cookies based on the user provided JSON example which lacks them.
+    // If they are returned, add them back. For now, match the user's JSON data block.
+    id: string;
     name: string;
     email: string;
     role: 'USER' | 'ADMIN';

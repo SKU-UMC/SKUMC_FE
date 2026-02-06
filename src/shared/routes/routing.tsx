@@ -5,6 +5,7 @@ import ApplyPage from '../../pages/ApplyPage';
 import ApplyFormPage from '../../pages/ApplyFormPage';
 import AdminPage from '../../pages/AdminPage';
 import SignupPage from '../../pages/SignupPage';
+import AuthCallbackPage from '../../pages/AuthCallbackPage';
 import { ROUTES } from './routes';
 import type { User } from '../types/user';
 
@@ -25,15 +26,17 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh }) => {
                 }
             />
 
+            <Route
+                path={ROUTES.AUTH_CALLBACK}
+                element={<AuthCallbackPage user={user} onComplete={onAuthRefresh} />}
+            />
+
+
             <Route path={ROUTES.HOME} element={<HomePage />} />
 
             <Route
                 path={ROUTES.APPLY}
-                element={
-                    user && !user.isCompleted
-                        ? <Navigate to={ROUTES.SIGNUP} replace />
-                        : <ApplyPage user={user} />
-                }
+                element={<ApplyPage />}
             />
 
             <Route

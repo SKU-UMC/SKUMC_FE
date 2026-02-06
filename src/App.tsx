@@ -6,26 +6,25 @@ import AppRouter from './shared/routes/routing';
 import type { User } from './shared/types/user';
 import { tokenRefresh } from './shared/apis/authService';
 import type { AuthResponse } from './shared/types/auth';
+import { storage } from './shared/utils/sessionStorage';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
   useEffect(() => {
     const initializeAuth = async () => {
       // 1. 세션 스토리지 확인
-      const storedUser = sessionStorage.getItem('user');
+      const storedUser = storage.getUser();
       if (storedUser) {
-        setUser(JSON.parse(storedUser));
+        setUser(storedUser);
         return;
       }
 
-      // 2. 세션 스토리지가 없으면 Refresh Token으로 갱신 시도
+      // 2. 세션이 없으면 refresh token 시도
       try {
-        const response = await tokenRefresh();
-        handleAuthSuccess(response);
+        const authData = await tokenRefresh();
+        handleAuthSuccess(authData);
       } catch (error) {
-        // 로그인 되어있지 않음 (조용히 실패)
         console.log('Not authenticated');
       }
     };
@@ -36,7 +35,7 @@ function App() {
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
     const userData: User = {
-      id: String(authData.userId),
+      id: authData.id,
       name: authData.name,
       email: authData.email,
       role: authData.role,
@@ -44,22 +43,19 @@ function App() {
       isCompleted: authData.isCompleted
     };
 
-    // 세션 스토리지 저장
-    sessionStorage.setItem('user', JSON.stringify(userData));
-    sessionStorage.setItem('accessToken', authData.accessToken); // 필요하다면
+    storage.setUser(userData);
 
     setUser(userData);
   };
 
   const handleLogin = () => {
-    // Google OAuth 로그인 리다이렉트
-    window.location.href = 'https://deltakim.tplinkdns.com/api/v1/auth/login';
+    window.location.href = import.meta.env.VITE_AUTH_GOOGLE_URL;
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    storage.clearAll();
     setUser(null);
-    // 필요 시 백엔드 로그아웃 API 호출 추가
+    // 백엔드 로그아웃 api 추가 예정
     window.location.href = '/';
   };
 

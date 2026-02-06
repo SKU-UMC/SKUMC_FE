@@ -46,7 +46,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess }) => {
                 className="max-w-md w-full bg-white border rounded-[2.5rem] p-10 shadow-2xl shadow-gray-200/50"
             >
                 <div className="flex flex-col items-center mb-10">
-                    <Logo size={48} className="mb-4" />
+                    <Logo />
                     <h2 className="text-3xl font-black tracking-tight" style={{ fontFamily: 'Paperlogy' }}>SIGN UP</h2>
                     <p className="text-gray-400 mt-2 text-center">SKUMC 활동을 위해 <br />디스코드와 노션 계정 정보가 필요합니다.</p>
                 </div>

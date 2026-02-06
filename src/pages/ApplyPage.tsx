@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useEffect, useState } from 'react';
 import type { User } from '../shared/types/user';
 import type { ApplyFormResponse, ApplicationResponse } from '../shared/types/application';
 import { RECRUITMENT_PARTS } from '../shared/constants/constants';
@@ -7,20 +8,14 @@ import { ROUTES } from '../shared/routes/routes';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useApplyForms, useMyApplications } from '../shared/hooks/useRecruitment';
+import { storage } from '../shared/utils/sessionStorage';
 
-interface ApplyPageProps {
-    user: User | null;
-}
-
-const ApplyPage: React.FC<ApplyPageProps> = ({ user }) => {
+const ApplyPage: React.FC = () => {
     const navigate = useNavigate();
+    const user = storage.getUser();
     const { data: templates } = useApplyForms();
 
     const handleApply = (partId: number) => {
-        if (!user) {
-            alert('로그인이 필요한 서비스입니다.');
-            return;
-        }
         const template = templates?.find((t: ApplyFormResponse) => t.partId === partId);
         if (template) {
             navigate(ROUTES.APPLY_FORM.replace(':formId', template.formId));
