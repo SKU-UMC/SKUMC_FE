@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../shared/routes/routes';
 import type { User } from '../shared/types/user';
@@ -12,17 +12,27 @@ interface AuthCallbackPageProps {
 
 const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete }) => {
     const navigate = useNavigate();
+    const [error, setError] = useState<string | null>(null);
+    const [, setIsAuthenticating] = useState(true);
 
     useEffect(() => {
-        // If user is already loaded, redirect based on status
         if (user) {
             handleRedirect(user);
         } else {
-            // Otherwise try to complete authentication (refresh token exchange)
-            onComplete().catch(() => {
-                // If fails, go home or login page (Home for now)
-                navigate(ROUTES.HOME, { replace: true });
-            });
+            onComplete()
+                .then(() => {
+                    setIsAuthenticating(false);
+                })
+                .catch((err: any) => {
+                    setIsAuthenticating(false);
+                    // 서버에서 내려주는 에러 메시지 확인
+                    const serverMessage = err.response?.data?.message || err.message;
+                    if (serverMessage?.includes('@skuniv.ac.kr')) {
+                        setError('DOMAIN_ERROR');
+                    } else {
+                        setError('UNKNOWN_ERROR');
+                    }
+                });
         }
     }, [user, onComplete, navigate]);
 
@@ -33,6 +43,57 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete })
             navigate(ROUTES.SIGNUP, { replace: true });
         }
     };
+
+    // 도메인 오류 전용 화면
+    if (error === 'DOMAIN_ERROR') {
+        return (
+            <div className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden">
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/10 rounded-full blur-[120px] opacity-50" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="relative z-10 flex flex-col items-center text-center px-6 max-w-md"
+                >
+                    <div className="w-20 h-20 bg-red-50 rounded-[2rem] flex items-center justify-center text-red-500 mb-8 shadow-xl shadow-red-500/10 border border-red-100">
+                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+
+                    <h2 className="text-3xl font-black text-gray-900 tracking-tighter mb-4" style={{ fontFamily: 'Paperlogy' }}>
+                        학교 계정으로만 <br /> <span className="text-red-500">로그인이 가능합니다</span>
+                    </h2>
+
+                    <p className="text-gray-400 font-medium break-keep mb-12">
+                        SKUMC는 보안 및 학생 인증을 위해 <br />
+                        서경대학교 구글 계정<span className="text-gray-600 font-bold">(@skuniv.ac.kr)</span>만 허용하고 있습니다.
+                    </p>
+
+                    <div className="flex flex-col w-full gap-3">
+                        <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => window.location.href = '/api/v1/auth/login/google'}
+                            className="w-full py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-xl hover:bg-red-500 transition-all"
+                        >
+                            다른 계정으로 다시 시도
+                        </motion.button>
+                        <button
+                            onClick={() => navigate(ROUTES.HOME)}
+                            className="w-full py-4 text-gray-400 font-bold hover:text-gray-900 transition-colors"
+                        >
+                            홈으로 돌아가기
+                        </button>
+                    </div>
+                </motion.div>
+            </div>
+        );
+    }
+
 
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden">
