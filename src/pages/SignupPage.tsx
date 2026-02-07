@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { setProfile } from '../shared/apis/authService'
+import { setProfile, tokenRefresh } from '../shared/apis/authService'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Logo from '../shared/components/Logo';
 import { storage } from '../shared/utils/sessionStorage';
@@ -29,10 +29,13 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess }) => {
 
     const onSubmit = async (data: SignupFormData) => {
         try {
-            const res = await setProfile(data);
+            await setProfile(data);
+
+            const res = await tokenRefresh();
 
             // 서버 응답 데이터를 바탕으로 유저 정보 갱신
             const updatedUser: User = {
+                id: res.id,
                 name: res.name,
                 email: res.email,
                 role: res.role,

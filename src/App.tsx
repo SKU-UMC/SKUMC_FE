@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './shared/components/Navbar';
 import AppRouter from './shared/routes/routing';
@@ -9,11 +8,25 @@ import type { AuthResponse } from './shared/types/auth';
 import { storage } from './shared/utils/sessionStorage';
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(storage.getUser());
+
+  useEffect(() => {
+    const initAuth = async () => {
+      if (user) {
+        try {
+          await handleAuthRefresh();
+        } catch (error) {
+          handleAuthError();
+        }
+      }
+    };
+    initAuth();
+  }, []);
 
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
     const userData: User = {
+      id: authData.id,
       name: authData.name,
       email: authData.email,
       role: authData.role,
@@ -32,6 +45,7 @@ function App() {
 
     if (isLocal) {
       const dummyAuth: AuthResponse = {
+        id: 1,
         email: "muwingky@skuniv.ac.kr",
         isCompleted: true,
         isRegistered: true,
