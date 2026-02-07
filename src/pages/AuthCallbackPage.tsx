@@ -29,15 +29,23 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete, o
         if (user) {
             handleRedirect(user);
         } else {
-            onComplete().catch((err: any) => {
-                // 서버에서 내려주는 에러 메시지 확인
-                const serverMessage = err.response?.data?.message || err.message;
-                if (serverMessage?.includes('@skuniv.ac.kr')) {
-                    setError('DOMAIN_ERROR');
-                } else {
-                    setError('UNKNOWN_ERROR');
-                }
-            });
+            // onComplete가 AuthResponse를 반환한다고 가정 (App.tsx 수정됨)
+            onComplete()
+                .then((refreshedUser: any) => {
+                    // 받아온 최신 유저 정보로 즉시 리다이렉트
+                    if (refreshedUser) {
+                        handleRedirect(refreshedUser);
+                    }
+                })
+                .catch((err: any) => {
+                    // 서버에서 내려주는 에러 메시지 확인
+                    const serverMessage = err.response?.data?.message || err.message;
+                    if (serverMessage?.includes('@skuniv.ac.kr')) {
+                        setError('DOMAIN_ERROR');
+                    } else {
+                        setError('UNKNOWN_ERROR');
+                    }
+                });
         }
     }, [user, onComplete, onError]);
 
