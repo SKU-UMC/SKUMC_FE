@@ -14,6 +14,7 @@ export interface ApiResponse<T> {
 export interface AuthResponse {
     // Tokens are likely handled via cookies based on the user provided JSON example which lacks them.
     // If they are returned, add them back. For now, match the user's JSON data block.
+    id: number;
     name: string;
     email: string;
     role: 'USER' | 'ADMIN';

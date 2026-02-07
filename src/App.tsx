@@ -14,6 +14,7 @@ function App() {
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
     const userData: User = {
+      id: authData.id,
       name: authData.name,
       email: authData.email,
       role: authData.role,
