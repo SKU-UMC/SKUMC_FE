@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 // import { useApplications, useApplyForms, useMajors, useParts } from '../shared/hooks/useRecruitment';
-import type { ApplicationResponse, ApplyFormResponse } from '../shared/types/application';
+// import type { ApplicationResponse, ApplyFormResponse } from '../shared/types/application';
 import type { Major, Part, Generation } from '../shared/types/recruitment';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MOCK_MAJORS, MOCK_PARTS, MOCK_GENERATIONS } from '../data/system-setting.data';
