@@ -14,7 +14,6 @@ function App() {
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
     const userData: User = {
-      id: authData.id,
       name: authData.name,
       email: authData.email,
       role: authData.role,
@@ -34,7 +33,6 @@ function App() {
     if (isLocal) {
       const dummyAuth: AuthResponse = {
         email: "muwingky@skuniv.ac.kr",
-        id: "2",
         isCompleted: true,
         isRegistered: true,
         name: "황무원",
