@@ -6,57 +6,6 @@ import HeroSection from '../shared/components/HeroSection';
 import { motion, useScroll, useTransform, useAnimation } from 'framer-motion';
 import { ROUTES } from '../shared/routes/routes';
 
-const activities = [
-    {
-        title: '스터디',
-        tag: 'Study',
-        desc: 'UMC에서 제공하는 워크북을 바탕으로 주 1회, 10주간 스터디를 진행합니다.',
-        imgGradient: 'from-blue-400 to-main'
-    },
-    {
-        title: 'PM Day',
-        tag: 'Networking',
-        desc: '각 팀의 PM, 디자이너, 개발자들이 모여 다양한 관점에서 프로젝트를 바라보고, 각자의 경험을 나누며 발전을 도모합니다.',
-        imgGradient: 'from-purple-400 to-main'
-    },
-    {
-        title: '너디너리 해커톤',
-        tag: 'Big Event',
-        desc: '26개 대학에서 모인 부원들이 한 팀이 되어, 기획부터 개발까지 전 과정을 경험하는 대규모 해커톤입니다.',
-        imgGradient: 'from-orange-400 to-main'
-    },
-    {
-        title: 'UMC 해커톤',
-        tag: 'Internal',
-        desc: 'UMC 부원들만을 대상으로 하며, 혁신적인 아이디어를 내고 단기간 내에 실용적인 결과물을 만들어냅니다.',
-        imgGradient: 'from-pink-400 to-main'
-    },
-    {
-        title: '데모데이',
-        tag: 'Final Stage',
-        desc: '그동안 갈고닦은 실력을 세상에 선보이는 자리입니다. 실제 사용자를 고려한 완성도 있는 결과물을 선보이는 무대입니다.',
-        imgGradient: 'from-green-400 to-main'
-    }
-];
-
-const universities = [
-    "서울여자대학교", "성신여자대학교", "숭실대학교", "이화여자대학교",
-    "동덕여자대학교", "명지대학교", "숙명여자대학교", "전북대학교",
-    "서경대학교", "국민대학교", "중앙대학교", "연세대학교",
-    "고려대학교", "한양대학교", "경희대학교", "한국외국어대학교",
-    "서울시립대학교", "건국대학교", "동국대학교", "홍익대학교",
-    "아주대학교", "인하대학교"
-];
-
-const timelineData = [
-    { gen: '5TH UMC', date: '2023.09' },
-    { gen: '6TH UMC', date: '2024.03' },
-    { gen: '7TH UMC', date: '2024.09' },
-    { gen: '8TH UMC', date: '2025.03' },
-    { gen: '9TH UMC', date: '2025.09' },
-    { gen: '10TH UMC', date: '2026.03', current: true },
-];
-
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const { scrollY } = useScroll();
@@ -96,6 +45,57 @@ const HomePage: React.FC = () => {
         controls.start({ x: nextX, transition: { type: 'spring', stiffness: 300, damping: 30 } });
     };
 
+    const activities = [
+        {
+            title: '스터디',
+            tag: 'Study',
+            desc: 'UMC에서 제공하는 워크북을 바탕으로 주 1회, 10주간 스터디를 진행합니다.',
+            imgGradient: 'from-blue-400 to-main'
+        },
+        {
+            title: 'PM Day',
+            tag: 'Networking',
+            desc: '각 팀의 PM, 디자이너, 개발자들이 모여 다양한 관점에서 프로젝트를 바라보고, 각자의 경험을 나누며 발전을 도모합니다.',
+            imgGradient: 'from-purple-400 to-main'
+        },
+        {
+            title: '너디너리 해커톤',
+            tag: 'Big Event',
+            desc: '26개 대학에서 모인 부원들이 한 팀이 되어, 기획부터 개발까지 전 과정을 경험하는 대규모 해커톤입니다.',
+            imgGradient: 'from-orange-400 to-main'
+        },
+        {
+            title: 'UMC 해커톤',
+            tag: 'Internal',
+            desc: 'UMC 부원들만을 대상으로 하며, 혁신적인 아이디어를 내고 단기간 내에 실용적인 결과물을 만들어냅니다.',
+            imgGradient: 'from-pink-400 to-main'
+        },
+        {
+            title: '데모데이',
+            tag: 'Final Stage',
+            desc: '그동안 갈고닦은 실력을 세상에 선보이는 자리입니다. 실제 사용자를 고려한 완성도 있는 결과물을 선보이는 무대입니다.',
+            imgGradient: 'from-green-400 to-main'
+        }
+    ];
+
+    const universities = [
+        "서울여자대학교", "성신여자대학교", "숭실대학교", "이화여자대학교",
+        "동덕여자대학교", "명지대학교", "숙명여자대학교", "전북대학교",
+        "서경대학교", "국민대학교", "중앙대학교", "연세대학교",
+        "고려대학교", "한양대학교", "경희대학교", "한국외국어대학교",
+        "서울시립대학교", "건국대학교", "동국대학교", "홍익대학교",
+        "아주대학교", "인하대학교"
+    ];
+
+    const timelineData = [
+        { gen: '5TH UMC', date: '2023.09' },
+        { gen: '6TH UMC', date: '2024.03' },
+        { gen: '7TH UMC', date: '2024.09' },
+        { gen: '8TH UMC', date: '2025.03' },
+        { gen: '9TH UMC', date: '2025.09' },
+        { gen: '10TH UMC', date: '2026.03', current: true },
+    ];
+
     return (
         <div>
             {/* 1. HeroSection */}
@@ -127,7 +127,7 @@ const HomePage: React.FC = () => {
 
                         {/* 2.5 University Partners*/}
                         <div className="relative pt-10 border-t border-white/10 overflow-hidden">
-                            <h3 className="text-xl md:text-2xl font-black text-white/90 mb-10 tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
+                            <h3 className="text-xl md:text-1xl font-black text-white/90 mb-10 tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
                                 UMC는 <span className="text-main">22개의 학교</span>와 함께하고 있습니다.
                             </h3>
 

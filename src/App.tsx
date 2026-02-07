@@ -11,29 +11,6 @@ import { storage } from './shared/utils/sessionStorage';
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
-  // useEffect(() => {
-  //   const initializeAuth = async () => {
-  //     // 1. 세션 스토리지 확인
-  //     const storedUser = storage.getUser();
-  //     if (storedUser) {
-  //       setUser(storedUser);
-  //       console.log('User found in session storage');
-  //       return;
-  //     }
-
-  //     // 2. 세션이 없으면 refresh token 시도
-  //     try {
-  //       const authData = await tokenRefresh();
-  //       handleAuthSuccess(authData);
-  //       console.log('User authenticated');
-  //     } catch (error) {
-  //       console.log('Not authenticated');
-  //     }
-  //   };
-
-  //   initializeAuth();
-  // }, []);
-
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
     const userData: User = {
@@ -61,13 +38,22 @@ function App() {
     window.location.href = '/';
   };
 
+  // 토큰 갱신
   const handleAuthRefresh = async () => {
     try {
       const response = await tokenRefresh();
       handleAuthSuccess(response);
     } catch (error) {
       console.error("Auth refresh failed", error);
+      throw error;
     }
+  }
+
+  // 다른 도메인으로 로그인 시도하여 에러 콜백 받을 시, AuthCallbackPage에서 에러 전용 리턴값 띄워주기
+  const handleAuthError = () => {
+    storage.clearAll();
+    setUser(null);
+    logout();
   }
 
   return (
@@ -80,7 +66,7 @@ function App() {
           externalTooltipMessage={user ? `환영합니다, ${user.name}님!` : undefined}
         />
         <main className="flex-grow">
-          <AppRouter user={user} onAuthRefresh={handleAuthRefresh} />
+          <AppRouter user={user} onAuthRefresh={handleAuthRefresh} onAuthError={handleAuthError} />
         </main>
 
         <footer className="py-12 border-t text-center bg-gray-50/50">
