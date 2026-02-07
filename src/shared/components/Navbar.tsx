@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoogleIcon from '../../assets/google-icon-logo.svg?react';
+import Logo from './Logo';
 
 interface NavbarProps {
     isLoggedIn: boolean;
@@ -37,7 +38,9 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, external
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex items-center space-x-8">
                         <Link to={ROUTES.HOME} className="text-2xl font-bold text-main tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
-                            SKUMC
+                            <div className="flex items-center justify-center">
+                                <Logo size={30} />
+                            </div>
                         </Link>
                         <div className="hidden md:flex space-x-6">
                             <Link to={ROUTES.HOME} className={`text-sm font-medium ${location.pathname === ROUTES.HOME ? 'text-main' : 'text-gray-600 hover:text-main'}`}>

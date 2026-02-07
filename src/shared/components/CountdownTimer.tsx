@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
 
 const CountdownTimer: React.FC = () => {
     const targetDate = new Date('2026-02-15T23:39:00').getTime();

@@ -1,4 +1,4 @@
-import SKUMC from "../../assets/skumc_logo_1.svg?react";
+import SKUMC from "../../assets/SLogo.svg?react";
 
 interface LogoProps {
     className?: string;

@@ -14,3 +14,8 @@ export const tokenRefresh = async (): Promise<AuthResponse> => {
     const response = await apiClient.post<ApiResponse<AuthResponse>>('/api/v1/auth/refresh');
     return response.data.data;
 };
+
+export const logout = async (): Promise<AuthResponse> => {
+    const response = await apiClient.post<ApiResponse<AuthResponse>>('/api/v1/auth/logout');
+    return response.data.data;
+};

@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ROUTES } from '../routes/routes';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +8,6 @@ const HeroSection: React.FC = () => {
     const { scrollY } = useScroll();
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
     const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-    const rotate = useTransform(scrollY, [0, 500], [0, 45]);
 
     return (
         <div className="relative h-[90vh] w-full bg-white overflow-hidden flex items-center justify-center">

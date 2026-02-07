@@ -1,36 +1,38 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './shared/components/Navbar';
 import AppRouter from './shared/routes/routing';
 import type { User } from './shared/types/user';
-import { tokenRefresh } from './shared/apis/authService';
+import { tokenRefresh, logout } from './shared/apis/authService';
 import type { AuthResponse } from './shared/types/auth';
 import { storage } from './shared/utils/sessionStorage';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const initializeAuth = async () => {
-      // 1. 세션 스토리지 확인
-      const storedUser = storage.getUser();
-      if (storedUser) {
-        setUser(storedUser);
-        return;
-      }
+  // useEffect(() => {
+  //   const initializeAuth = async () => {
+  //     // 1. 세션 스토리지 확인
+  //     const storedUser = storage.getUser();
+  //     if (storedUser) {
+  //       setUser(storedUser);
+  //       console.log('User found in session storage');
+  //       return;
+  //     }
 
-      // 2. 세션이 없으면 refresh token 시도
-      try {
-        const authData = await tokenRefresh();
-        handleAuthSuccess(authData);
-      } catch (error) {
-        console.log('Not authenticated');
-      }
-    };
+  //     // 2. 세션이 없으면 refresh token 시도
+  //     try {
+  //       const authData = await tokenRefresh();
+  //       handleAuthSuccess(authData);
+  //       console.log('User authenticated');
+  //     } catch (error) {
+  //       console.log('Not authenticated');
+  //     }
+  //   };
 
-    initializeAuth();
-  }, []);
+  //   initializeAuth();
+  // }, []);
 
   const handleAuthSuccess = (authData: AuthResponse) => {
     // User 객체 매핑
@@ -55,7 +57,7 @@ function App() {
   const handleLogout = () => {
     storage.clearAll();
     setUser(null);
-    // 백엔드 로그아웃 api 추가 예정
+    logout();
     window.location.href = '/';
   };
 
