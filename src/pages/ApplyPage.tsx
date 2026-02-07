@@ -44,7 +44,7 @@ const ApplyPage: React.FC = () => {
                 </motion.span>
 
                 <h2 className="text-4xl md:text-5xl font-black mb-4 text-gray-900">10기 챌린저 모집</h2>
-                <p className="text-gray-500 text-lg">10기 SKUMC와 함께할 열정 가득한 학우분들을 기다립니다.</p>
+                <p className="text-gray-500 text-lg">10기 SKUMC와 함께할 열정 가득한 여러분들을 기다립니다.</p>
 
                 <CountdownTimer />
             </motion.div>

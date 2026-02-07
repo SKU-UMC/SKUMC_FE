@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeroSection from '../shared/components/HeroSection';
@@ -110,30 +110,28 @@ const HomePage: React.FC = () => {
                         viewport={{ once: true }}
                         className="bg-gray-900 rounded-[3rem] p-16 md:p-24 text-white relative overflow-hidden"
                     >
+                        {/* 배경 Glows */}
                         <div className="absolute top-0 right-0 w-96 h-96 bg-main/20 blur-[100px] -mr-48 -mt-48" />
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-main/10 blur-[80px] -ml-32 -mb-32" />
 
-                        <h2 className="text-4xl md:text-4xl text-white mb-8 leading-tight" style={{ fontFamily: 'Paperlogy' }}>
-                            UMC는  <span className="text-main underline decoration-main/30">세상의 틀을 깰</span> <br /> 챌린저를 기다리고 있어요.
-                        </h2>
-                        <p className="text-gray-400 text-lg mb-12 max-w-3xl mx-auto">
-                            University Makeus Challenge(UMC)는 전국 대학생 연합 IT 프로젝트 동아리입니다.<br />
-                            UMC는 다양한 사람들과 6개월 동안 함께하며, 실제로 동작하는 서비스를 만들어내는 것을 목표로 합니다.
-                        </p>
-                        {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <div className="flex -space-x-4">
-                                {[1, 2, 3, 4].map(i => (
-                                    <div key={i} className="w-12 h-12 rounded-full border-4 border-gray-900 bg-gray-800 flex items-center justify-center text-xs font-bold">
-                                        {i === 4 ? '+50' : ''}
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="text-sm text-gray-500 font-medium">현재 전국에 800명 이상의 부원이 함께하고 있습니다.</p>
-                        </div> */}
-                        {/* 2.5 University Partners (Marquee) - NEW */}
-                        <section className="bg-black overflow-hidden relative border-y border-white/5">
-                            {/* Marquee Container */}
-                            <div className="flex flex-col gap-6">
+                        {/* Text Content */}
+                        <div className="relative z-20">
+                            <h2 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
+                                UMC는 <span className="text-main underline decoration-main/30">세상의 틀을 깰</span> <br /> 챌린저를 기다리고 있어요.
+                            </h2>
+                            <p className="text-gray-400 text-lg mb-12 max-w-3xl mx-auto font-medium break-keep">
+                                University Makeus Challenge(UMC)는 전국 대학생 연합 IT 프로젝트 동아리입니다.<br className="hidden md:block" />
+                                6개월 동안 실제로 동작하는 서비스를 만들어내는 것을 목표로 합니다.
+                            </p>
+                        </div>
+
+                        {/* 2.5 University Partners (Marquee - Integrated) */}
+                        <div className="relative pt-10 border-t border-white/10 overflow-hidden">
+                            <h3 className="text-xl md:text-1xl font-black text-white/90 mb-10 tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
+                                UMC는 <span className="text-main">22개의 학교</span>와 함께하고 있습니다.
+                            </h3>
+
+                            <div className="flex flex-col gap-5 relative">
                                 {/* First Row: Moving Left */}
                                 <div className="flex overflow-hidden group">
                                     <motion.div
@@ -144,12 +142,12 @@ const HomePage: React.FC = () => {
                                         {[...universities, ...universities].map((uni, idx) => (
                                             <div
                                                 key={`${uni}-${idx}`}
-                                                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-3.5 rounded-full hover:border-main/50 hover:bg-white/10 transition-all cursor-default group"
+                                                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-3 rounded-full hover:border-main/50 hover:bg-white/10 transition-all cursor-default group"
                                             >
-                                                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-main/20">
-                                                    <div className="w-2 h-2 rounded-full bg-white/40 group-hover:bg-main" />
+                                                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-main/20">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-main" />
                                                 </div>
-                                                <span className="text-white/80 font-bold text-sm md:text-base whitespace-nowrap group-hover:text-main">
+                                                <span className="text-white/70 font-bold text-sm md:text-base whitespace-nowrap group-hover:text-main">
                                                     {uni}
                                                 </span>
                                             </div>
@@ -167,24 +165,24 @@ const HomePage: React.FC = () => {
                                         {[...universities, ...universities].reverse().map((uni, idx) => (
                                             <div
                                                 key={`rev-${uni}-${idx}`}
-                                                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-3.5 rounded-full hover:border-main/50 hover:bg-white/10 transition-all cursor-default group"
+                                                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 px-6 py-3 rounded-full hover:border-main/50 hover:bg-white/10 transition-all cursor-default group"
                                             >
-                                                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-main/20">
-                                                    <div className="w-2 h-2 rounded-full bg-white/40 group-hover:bg-main" />
+                                                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-main/20">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-main" />
                                                 </div>
-                                                <span className="text-white/80 font-bold text-sm md:text-base whitespace-nowrap group-hover:text-main">
+                                                <span className="text-white/70 font-bold text-sm md:text-base whitespace-nowrap group-hover:text-main">
                                                     {uni}
                                                 </span>
                                             </div>
                                         ))}
                                     </motion.div>
                                 </div>
-                            </div>
 
-                            {/* Side Fades for Marquee */}
-                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
-                        </section>
+                                {/* Side Fades - Matches box background (gray-900) */}
+                                <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-900 via-gray-900/50 to-transparent z-10 pointer-events-none" />
+                                <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-900 via-gray-900/50 to-transparent z-10 pointer-events-none" />
+                            </div>
+                        </div>
 
                     </motion.div>
                 </section>
@@ -241,7 +239,7 @@ const HomePage: React.FC = () => {
                             }}
                             className="flex gap-6 px-6 md:px-24 lg:px-40"
                         >
-                            {activities.map((act, idx) => (
+                            {activities.map((act) => (
                                 <motion.div
                                     key={act.title}
                                     className="shrink-0 w-[85%] md:w-[400px] bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col"
