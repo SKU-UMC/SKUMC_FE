@@ -33,7 +33,6 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess }) => {
 
             // 서버 응답 데이터를 바탕으로 유저 정보 갱신
             const updatedUser: User = {
-                id: res.id,
                 name: res.name,
                 email: res.email,
                 role: res.role,
