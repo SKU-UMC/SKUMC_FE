@@ -28,7 +28,23 @@ function App() {
   };
 
   const handleLogin = () => {
-    window.location.href = import.meta.env.VITE_AUTH_GOOGLE_URL;
+    // 로컬 환경에서만 더미 로그인 사용(추후 삭제 예정)
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    if (isLocal) {
+      const dummyAuth: AuthResponse = {
+        email: "muwingky@skuniv.ac.kr",
+        id: "2",
+        isCompleted: true,
+        isRegistered: false,
+        name: "황무원",
+        role: "ADMIN"
+      };
+      handleAuthSuccess(dummyAuth);
+      console.log('Dummy login success:', dummyAuth);
+    } else {
+      window.location.href = import.meta.env.VITE_AUTH_GOOGLE_URL;
+    }
   };
 
   const handleLogout = () => {
