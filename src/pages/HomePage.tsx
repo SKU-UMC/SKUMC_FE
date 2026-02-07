@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* 2.5 University Partners (Marquee - Integrated) */}
+                        {/* 2.5 University Partners*/}
                         <div className="relative pt-10 border-t border-white/10 overflow-hidden">
                             <h3 className="text-xl md:text-1xl font-black text-white/90 mb-10 tracking-tighter" style={{ fontFamily: 'Paperlogy' }}>
                                 UMC는 <span className="text-main">22개의 학교</span>와 함께하고 있습니다.
