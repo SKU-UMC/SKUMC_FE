@@ -90,7 +90,11 @@ const MyApplicationStatus = () => {
     const { data: applications, isLoading } = useMyApplications();
 
     if (isLoading) return <div className="mt-20 text-center text-gray-400">지원 현황을 불러오는 중...</div>;
-    if (!applications || applications.length === 0 || !Array.isArray(applications)) return null;
+
+    // 데이터가 배열이 아니거나 비어있는 경우 화면을 띄우지 않도록 예외 처리
+    if (!applications || !Array.isArray(applications) || applications.length === 0) {
+        return null;
+    }
 
     return (
         <motion.div

@@ -22,7 +22,7 @@ const AdminPage: React.FC = () => {
             <div className="flex justify-between items-end mb-10">
                 <div>
                     <h2 className="text-3xl font-black tracking-tight" style={{ fontFamily: 'Paperlogy' }}>ADMIN DASHBOARD</h2>
-                    <p className="text-gray-400">SKUMC 운영 및 관리 시스템</p>
+                    <p className="text-gray-400">SKUMC 관리자 페이지</p>
                 </div>
                 <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl">
                     {(['applications', 'templates', 'settings'] as const).map((tab) => (
@@ -67,7 +67,7 @@ const AdminPage: React.FC = () => {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y">
-                                            {(!apps || apps.length === 0) ? (
+                                            {(!apps || !Array.isArray(apps) || apps.length === 0) ? (
                                                 <tr>
                                                     <td colSpan={4} className="px-6 py-8 text-center text-gray-400">
                                                         지원자가 없습니다.
@@ -107,7 +107,7 @@ const AdminPage: React.FC = () => {
                                     </button>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {templates?.map((template: ApplyFormResponse) => (
+                                    {Array.isArray(templates) && templates.map((template: ApplyFormResponse) => (
                                         <div key={template.formId} className="border rounded-2xl p-6 hover:border-main transition-colors group relative bg-white">
                                             {template.isDefault && (
                                                 <span className="absolute top-4 right-4 text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-full border border-blue-100">
@@ -142,7 +142,7 @@ const AdminPage: React.FC = () => {
                                     <section>
                                         <h4 className="font-bold text-gray-400 text-sm uppercase tracking-wider mb-6">학과 (Major) 관리</h4>
                                         <div className="space-y-2">
-                                            {majors?.map((major: Major) => (
+                                            {Array.isArray(majors) && majors.map((major: Major) => (
                                                 <div key={major.majorId} className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-transparent hover:border-main/20 transition-all">
                                                     <span className={`font-medium ${!major.enabled && 'text-gray-300 line-through'}`}>{major.name}</span>
                                                     <span className={`text-xs px-2 py-1 rounded-md ${major.enabled ? 'bg-green-100 text-green-600' : 'bg-gray-200 text-gray-500'}`}>
@@ -155,7 +155,7 @@ const AdminPage: React.FC = () => {
                                     <section>
                                         <h4 className="font-bold text-gray-400 text-sm uppercase tracking-wider mb-6">지원 파트 (Part) 관리</h4>
                                         <div className="space-y-2">
-                                            {parts?.map((part: Part) => (
+                                            {Array.isArray(parts) && parts.map((part: Part) => (
                                                 <div key={part.partId} className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl hover:border-main/20 border border-transparent transition-all">
                                                     <div className="flex items-center space-x-3">
                                                         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: part.color || '#ccc' }} />
