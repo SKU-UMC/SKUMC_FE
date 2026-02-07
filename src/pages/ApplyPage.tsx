@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useApplyForms, useMyApplications } from '../shared/hooks/useRecruitment';
 import { storage } from '../shared/utils/sessionStorage';
-import CountdownTimer from '../shared/components/CountdownTimer';
+import CountdownTimer from '../feature/applyPage/CountdownTimer';
 
 const ApplyPage: React.FC = () => {
     const navigate = useNavigate();
