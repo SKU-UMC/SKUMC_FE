@@ -59,6 +59,7 @@ function App() {
     try {
       const response = await tokenRefresh();
       handleAuthSuccess(response);
+      return response;
     } catch (error) {
       console.error("Auth refresh failed", error);
       throw error;
