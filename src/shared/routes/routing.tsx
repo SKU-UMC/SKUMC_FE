@@ -30,7 +30,7 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             <Route
                 path={ROUTES.SIGNUP}
                 element={
-                    user && !user.isCompleted
+                    user && user.isCompleted && !user.isRegistered
                         ? <SignupPage onSuccess={handleSignupSuccess} />
                         : <Navigate to={ROUTES.HOME} replace />
                 }
@@ -57,7 +57,7 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             <Route
                 path={ROUTES.APPLY_FORM}
                 element={
-                    user && !user.isCompleted
+                    user && user.isCompleted && !user.isRegistered
                         ? <Navigate to={ROUTES.SIGNUP} replace />
                         : <ApplyFormPage user={user} />
                 }
@@ -66,7 +66,7 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             <Route
                 path={ROUTES.ADMIN_ALL}
                 element={
-                    user && !user.isCompleted
+                    user && user.isCompleted && !user.isRegistered
                         ? <Navigate to={ROUTES.SIGNUP} replace />
                         : (user?.role === 'ADMIN' ? <AdminPage /> : <Navigate to={ROUTES.HOME} />)
                 }
@@ -77,7 +77,7 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             <Route
                 path={ROUTES.TEST}
                 element={
-                    user && !user.isCompleted
+                    user && user.isCompleted && !user.isRegistered
                         ? <Navigate to={ROUTES.SIGNUP} replace />
                         : <TestPage />
                 }

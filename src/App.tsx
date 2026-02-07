@@ -82,7 +82,7 @@ function App() {
           onLogout={handleLogout}
           externalTooltipMessage={
             user
-              ? (user.isCompleted && user.isRegistered
+              ? (user.isRegistered // 서비스 가입 완료 여부
                 ? `환영합니다, ${user.name}님!`
                 : `${user.name}님, 가입을 완료해주세요!`)
               : undefined

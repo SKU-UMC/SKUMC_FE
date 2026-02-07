@@ -31,7 +31,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess }) => {
             await setProfile(data);
             const user = storage.getUser();
             if (user) {
-                user.isCompleted = true;
+                user.isRegistered = true;
                 storage.setUser(user);
             }
             await onSuccess(); // 회원 정보 갱신 및 (부모에서 정의한) 리다이렉트 실행
