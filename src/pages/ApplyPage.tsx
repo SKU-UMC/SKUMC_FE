@@ -90,7 +90,7 @@ const MyApplicationStatus = () => {
     const { data: applications, isLoading } = useMyApplications();
 
     if (isLoading) return <div className="mt-20 text-center text-gray-400">지원 현황을 불러오는 중...</div>;
-    if (!applications || applications.length === 0) return null;
+    if (!applications || applications.length === 0 || !Array.isArray(applications)) return null;
 
     return (
         <motion.div
@@ -111,7 +111,7 @@ const MyApplicationStatus = () => {
                         </tr>
                     </thead>
                     <tbody className="divide-y">
-                        {applications.map((app: ApplicationResponse) => (
+                        {applications?.map((app: ApplicationResponse) => (
                             <tr key={app.applicationId} className="hover:bg-gray-50 transition-colors">
                                 <td className="px-6 py-4 text-sm font-medium">{app.partName}</td>
                                 <td className="px-6 py-4 text-sm text-gray-500">

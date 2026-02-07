@@ -66,7 +66,7 @@ function App() {
           externalTooltipMessage={user ? `환영합니다, ${user.name}님!` : undefined}
         />
         <main className="flex-grow">
-          <AppRouter user={user} onAuthRefresh={handleAuthRefresh} />
+          <AppRouter user={user} onAuthRefresh={handleAuthRefresh} onAuthError={handleAuthError} />
         </main>
 
         <footer className="py-12 border-t text-center bg-gray-50/50">
