@@ -5,6 +5,7 @@ import * as z from 'zod';
 import { setProfile } from '../shared/apis/authService'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Logo from '../shared/components/Logo';
+import { storage } from '../shared/utils/sessionStorage';
 
 const signupSchema = z.object({
     discordEmail: z.string().email('올바른 이메일 형식이 아닙니다.'),
@@ -28,6 +29,11 @@ const SignupPage: React.FC<SignupPageProps> = ({ onSuccess }) => {
     const onSubmit = async (data: SignupFormData) => {
         try {
             await setProfile(data);
+            const user = storage.getUser();
+            if (user) {
+                user.isCompleted = true;
+                storage.setUser(user);
+            }
             await onSuccess(); // 회원 정보 갱신 및 (부모에서 정의한) 리다이렉트 실행
         } catch (error) {
             console.error('Signup error:', error);

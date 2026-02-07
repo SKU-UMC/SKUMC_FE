@@ -41,6 +41,11 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
                 element={<AuthCallbackPage user={user} onComplete={onAuthRefresh} onError={onAuthError} />}
             />
 
+            <Route
+                path={ROUTES.AUTH_ERROR}
+                element={<AuthCallbackPage user={user} onComplete={onAuthRefresh} onError={onAuthError} />}
+            />
+
 
             <Route path={ROUTES.HOME} element={<HomePage />} />
 
