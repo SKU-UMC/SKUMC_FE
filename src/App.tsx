@@ -35,7 +35,7 @@ function App() {
       const dummyAuth: AuthResponse = {
         email: "muwingky@skuniv.ac.kr",
         id: "2",
-        isCompleted: true,
+        isCompleted: false,
         isRegistered: false,
         name: "황무원",
         role: "ADMIN"
@@ -85,7 +85,7 @@ function App() {
           <AppRouter user={user} onAuthRefresh={handleAuthRefresh} onAuthError={handleAuthError} />
         </main>
 
-        <footer className="py-12 border-t text-center bg-gray-50/50">
+        <footer className="py-12 text-center bg-gray-50/50">
           <div className="max-w-7xl mx-auto px-4">
             <p className="text-gray-400 text-sm">&copy; 2026 SKUMC. All rights reserved.</p>
           </div>

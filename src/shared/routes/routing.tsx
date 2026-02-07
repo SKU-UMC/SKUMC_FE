@@ -1,11 +1,12 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
 import ApplyPage from '../../pages/ApplyPage';
 import ApplyFormPage from '../../pages/ApplyFormPage';
 import AdminPage from '../../pages/AdminPage';
 import SignupPage from '../../pages/SignupPage';
 import AuthCallbackPage from '../../pages/AuthCallbackPage';
+import TestPage from '../../pages/TestPage';
 import { ROUTES } from './routes';
 import type { User } from '../types/user';
 
@@ -16,13 +17,21 @@ interface AppRouterProps {
 }
 
 const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError }) => {
+    const navigate = useNavigate();
+
+    const handleSignupSuccess = async () => {
+        await onAuthRefresh();
+        alert('회원가입이 완료되었습니다!');
+        navigate(ROUTES.HOME);
+    };
+
     return (
         <Routes>
             <Route
                 path={ROUTES.SIGNUP}
                 element={
                     user && !user.isCompleted
-                        ? <SignupPage onSuccess={onAuthRefresh} />
+                        ? <SignupPage onSuccess={handleSignupSuccess} />
                         : <Navigate to={ROUTES.HOME} replace />
                 }
             />
@@ -59,6 +68,15 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             />
             {/* Catch-all redirect */}
             <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
+
+            <Route
+                path={ROUTES.TEST}
+                element={
+                    user && !user.isCompleted
+                        ? <Navigate to={ROUTES.SIGNUP} replace />
+                        : <TestPage />
+                }
+            />
         </Routes>
     );
 };
