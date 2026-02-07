@@ -33,6 +33,7 @@ function App() {
 
     if (isLocal) {
       const dummyAuth: AuthResponse = {
+        id: 1,
         email: "muwingky@skuniv.ac.kr",
         isCompleted: true,
         isRegistered: true,
