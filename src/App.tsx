@@ -35,7 +35,7 @@ function App() {
       const dummyAuth: AuthResponse = {
         email: "muwingky@skuniv.ac.kr",
         id: "2",
-        isCompleted: true,
+        isCompleted: false,
         isRegistered: false,
         name: "황무원",
         role: "ADMIN"
