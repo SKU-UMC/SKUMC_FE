@@ -60,9 +60,22 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, external
                     <div className="flex items-center space-x-4">
                         {isLoggedIn ? (
                             <div className="flex items-center space-x-4">
+                                <AnimatePresence>
+                                    {externalTooltipMessage && (
+                                        <motion.div
+                                            initial={{ opacity: 0, x: 5 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 5 }}
+                                            className="hidden md:flex relative items-center mr-2 rounded-lg bg-gray-900 text-white text-[11px] font-bold px-3 py-1.5 shadow-lg"
+                                        >
+                                            {externalTooltipMessage}
+                                            <div className="absolute top-1/2 -right-1 -mt-1 border-4 border-transparent border-l-gray-900" />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                                 <button
                                     onClick={onLogout}
-                                    className="px-4 py-2 text-sm border border-gray-200 rounded-full hover:bg-gray-50 transition-colors"
+                                    className="px-4 py-2 text-sm border border-gray-200 rounded-full hover:bg-gray-50 transition-colors whitespace-nowrap"
                                 >
                                     로그아웃
                                 </button>
