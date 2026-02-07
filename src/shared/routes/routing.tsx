@@ -12,9 +12,10 @@ import type { User } from '../types/user';
 interface AppRouterProps {
     user: User | null;
     onAuthRefresh: () => Promise<any>;
+    onAuthError: () => void;
 }
 
-const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh }) => {
+const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError }) => {
     return (
         <Routes>
             <Route
@@ -28,7 +29,7 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh }) => {
 
             <Route
                 path={ROUTES.AUTH_CALLBACK}
-                element={<AuthCallbackPage user={user} onComplete={onAuthRefresh} />}
+                element={<AuthCallbackPage user={user} onComplete={onAuthRefresh} onError={onAuthError} />}
             />
 
 

@@ -8,33 +8,39 @@ import Logo from '../shared/components/Logo';
 interface AuthCallbackPageProps {
     user: User | null;
     onComplete: () => Promise<void>;
+    onError: () => void;
 }
 
-const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete }) => {
+const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete, onError }) => {
     const navigate = useNavigate();
     const [error, setError] = useState<string | null>(null);
-    const [, setIsAuthenticating] = useState(true);
 
     useEffect(() => {
+        // URL 쿼리 파라미터 확인 (백엔드 리다이렉트 감지)
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+        const message = params.get('message');
+
+        if (status === 'FAIL' || message?.includes('@skuniv.ac.kr')) {
+            onError(); // 전역 상태 초기화
+            setError('DOMAIN_ERROR');
+            return;
+        }
+
         if (user) {
             handleRedirect(user);
         } else {
-            onComplete()
-                .then(() => {
-                    setIsAuthenticating(false);
-                })
-                .catch((err: any) => {
-                    setIsAuthenticating(false);
-                    // 서버에서 내려주는 에러 메시지 확인
-                    const serverMessage = err.response?.data?.message || err.message;
-                    if (serverMessage?.includes('@skuniv.ac.kr')) {
-                        setError('DOMAIN_ERROR');
-                    } else {
-                        setError('UNKNOWN_ERROR');
-                    }
-                });
+            onComplete().catch((err: any) => {
+                // 서버에서 내려주는 에러 메시지 확인
+                const serverMessage = err.response?.data?.message || err.message;
+                if (serverMessage?.includes('@skuniv.ac.kr')) {
+                    setError('DOMAIN_ERROR');
+                } else {
+                    setError('UNKNOWN_ERROR');
+                }
+            });
         }
-    }, [user, onComplete, navigate]);
+    }, [user, onComplete, onError]);
 
     const handleRedirect = (currentUser: User) => {
         if (currentUser.isRegistered) {
