@@ -10,6 +10,7 @@ import type {
     RecruitmentInfo,
     StatusUpdateRequest,
 } from '../types/recruitment';
+import type { ApiResponse } from '../types/auth';
 
 // ==================== Major APIs ====================
 
@@ -18,8 +19,8 @@ import type {
  * (관리자 권한일 경우 비활성화된 학과도 포함)
  */
 export const getMajors = async (): Promise<Major[]> => {
-    const response = await apiClient.get<Major[]>('/api/v1/common/majors');
-    return response.data;
+    const response = await apiClient.get<ApiResponse<Major[]>>('/api/v1/common/majors');
+    return response.data.data;
 };
 
 /**
@@ -46,8 +47,8 @@ export const updateMajorStatus = async (
  * (관리자 권한일 경우 비활성화된 파트도 포함)
  */
 export const getParts = async (): Promise<Part[]> => {
-    const response = await apiClient.get<Part[]>('/api/v1/common/parts');
-    return response.data;
+    const response = await apiClient.get<ApiResponse<Part[]>>('/api/v1/common/parts');
+    return response.data.data;
 };
 
 /**
@@ -73,8 +74,8 @@ export const updatePartStatus = async (
  * 모든 기수 목록 조회 (관리자)
  */
 export const getGenerations = async (): Promise<Generation[]> => {
-    const response = await apiClient.get<Generation[]>('/api/v1/common/generations');
-    return response.data;
+    const response = await apiClient.get<ApiResponse<Generation[]>>('/api/v1/common/generations');
+    return response.data.data;
 };
 
 /**
@@ -100,6 +101,6 @@ export const updateGeneration = async (
  * 현재 모집 중인 코스 및 파트 목록 조회
  */
 export const getRecruitmentInfo = async (): Promise<RecruitmentInfo> => {
-    const response = await apiClient.get<RecruitmentInfo>('/api/v1/common/recruitment');
-    return response.data;
+    const response = await apiClient.get<ApiResponse<RecruitmentInfo>>('/api/v1/common/recruitment');
+    return response.data.data;
 };

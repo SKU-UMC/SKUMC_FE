@@ -7,6 +7,7 @@ import type {
     ApplyFormsQueryParams,
 } from '../types/application';
 import type { CursorPageResponse } from '../types/common';
+import type { ApiResponse } from '../types/auth';
 
 /**
  * 신청서 템플릿 전체 리스트 조회 (관리자)
@@ -14,11 +15,11 @@ import type { CursorPageResponse } from '../types/common';
 export const getApplyForms = async (
     params?: ApplyFormsQueryParams
 ): Promise<CursorPageResponse<ApplyFormResponse>> => {
-    const response = await apiClient.get<CursorPageResponse<ApplyFormResponse>>(
+    const response = await apiClient.get<ApiResponse<CursorPageResponse<ApplyFormResponse>>>(
         '/api/v1/applications/apply-forms',
         { params }
     );
-    return response.data;
+    return response.data.data;
 };
 
 /**
@@ -39,10 +40,10 @@ export const updateApplyForm = async (data: ApplyFormUpdateRequest): Promise<voi
  * 특정 신청서 템플릿 세부 정보 조회 (관리자)
  */
 export const getApplyFormDetail = async (formId: string): Promise<ApplyFormDetailResponse> => {
-    const response = await apiClient.get<ApplyFormDetailResponse>(
+    const response = await apiClient.get<ApiResponse<ApplyFormDetailResponse>>(
         `/api/v1/applications/apply-forms/${formId}`
     );
-    return response.data;
+    return response.data.data;
 };
 
 /**
