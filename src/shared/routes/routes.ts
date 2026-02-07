@@ -7,4 +7,6 @@ export const ROUTES = {
     ADMIN_ALL: '/admin/*',
     SIGNUP: '/signup',
     AUTH_CALLBACK: '/auth/callback',
+
+    TEST: '/test',
 };

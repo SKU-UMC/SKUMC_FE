@@ -6,6 +6,7 @@ import ApplyFormPage from '../../pages/ApplyFormPage';
 import AdminPage from '../../pages/AdminPage';
 import SignupPage from '../../pages/SignupPage';
 import AuthCallbackPage from '../../pages/AuthCallbackPage';
+import TestPage from '../../pages/TestPage';
 import { ROUTES } from './routes';
 import type { User } from '../types/user';
 
@@ -59,6 +60,15 @@ const AppRouter: React.FC<AppRouterProps> = ({ user, onAuthRefresh, onAuthError 
             />
             {/* Catch-all redirect */}
             <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
+
+            <Route
+                path={ROUTES.TEST}
+                element={
+                    user && !user.isCompleted
+                        ? <Navigate to={ROUTES.SIGNUP} replace />
+                        : <TestPage />
+                }
+            />
         </Routes>
     );
 };
