@@ -50,9 +50,9 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete, o
     }, [user, onComplete, onError]);
 
     const handleRedirect = (currentUser: User) => {
-        if (currentUser.isRegistered && currentUser.isCompleted) {
+        if (currentUser.isCompleted && currentUser.isRegistered) {
             navigate(ROUTES.HOME, { replace: true });
-        } else if (currentUser.isRegistered && !currentUser.isCompleted) {
+        } else if (currentUser.isCompleted && !currentUser.isRegistered) {
             navigate(ROUTES.SIGNUP, { replace: true });
         } else {
             navigate(ROUTES.HOME, { replace: true });
