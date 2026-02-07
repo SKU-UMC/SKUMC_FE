@@ -18,10 +18,9 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete, o
     useEffect(() => {
         // URL 쿼리 파라미터 확인 (백엔드 리다이렉트 감지)
         const params = new URLSearchParams(window.location.search);
-        const status = params.get('status');
-        const message = params.get('message');
+        const reason = params.get('reason');
 
-        if (status === 'FAIL' || message?.includes('@skuniv.ac.kr')) {
+        if (reason === 'invalid_domain') {
             onError(); // 전역 상태 초기화
             setError('DOMAIN_ERROR');
             return;
@@ -43,10 +42,12 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete, o
     }, [user, onComplete, onError]);
 
     const handleRedirect = (currentUser: User) => {
-        if (currentUser.isRegistered) {
+        if (currentUser.isRegistered && currentUser.isCompleted) {
             navigate(ROUTES.HOME, { replace: true });
-        } else {
+        } else if (currentUser.isRegistered && !currentUser.isCompleted) {
             navigate(ROUTES.SIGNUP, { replace: true });
+        } else {
+            navigate(ROUTES.HOME, { replace: true });
         }
     };
 
