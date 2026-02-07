@@ -35,8 +35,8 @@ function App() {
       const dummyAuth: AuthResponse = {
         email: "muwingky@skuniv.ac.kr",
         id: "2",
-        isCompleted: false,
-        isRegistered: false,
+        isCompleted: true,
+        isRegistered: true,
         name: "황무원",
         role: "ADMIN"
       };
@@ -79,7 +79,13 @@ function App() {
           isLoggedIn={!!user}
           onLogin={handleLogin}
           onLogout={handleLogout}
-          externalTooltipMessage={user ? `환영합니다, ${user.name}님!` : undefined}
+          externalTooltipMessage={
+            user
+              ? (user.isCompleted && user.isRegistered
+                ? `환영합니다, ${user.name}님!`
+                : `${user.name}님, 가입을 완료해주세요!`)
+              : undefined
+          }
         />
         <main className="flex-grow">
           <AppRouter user={user} onAuthRefresh={handleAuthRefresh} onAuthError={handleAuthError} />
