@@ -101,7 +101,7 @@ const AuthCallbackPage: React.FC<AuthCallbackPageProps> = ({ user, onComplete })
             {/* Bottom Footer Decor */}
             <div className="absolute bottom-12 text-center z-10">
                 <span className="text-[10px] font-black tracking-[0.5em] text-gray-300 uppercase">
-                    Seokyeong Univ. Mobile Club
+                    SKUMC
                 </span>
             </div>
         </div>
