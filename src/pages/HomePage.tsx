@@ -1,15 +1,12 @@
 
 
 import { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import HeroSection from '../shared/components/HeroSection';
 import { motion, useScroll, useTransform, useAnimation } from 'framer-motion';
-import { ROUTES } from '../shared/routes/routes';
 
 // 9-15 lines removed
 
 const HomePage: React.FC = () => {
-    const navigate = useNavigate();
     const { scrollY } = useScroll();
     const yOffset = useTransform(scrollY, [0, 1], [0, 100]);
     const carouselRef = useRef<HTMLDivElement>(null);
