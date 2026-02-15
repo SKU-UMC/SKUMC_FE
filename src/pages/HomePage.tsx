@@ -6,6 +6,8 @@ import HeroSection from '../shared/components/HeroSection';
 import { motion, useScroll, useTransform, useAnimation } from 'framer-motion';
 import { ROUTES } from '../shared/routes/routes';
 
+// 9-15 lines removed
+
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const { scrollY } = useScroll();
@@ -45,46 +47,64 @@ const HomePage: React.FC = () => {
         controls.start({ x: nextX, transition: { type: 'spring', stiffness: 300, damping: 30 } });
     };
 
-    const activities = [
+    const activities: { title: string; desc: string; imgGradient: string; image?: string }[] = [
         {
             title: '스터디',
-            tag: 'Study',
             desc: 'UMC에서 제공하는 워크북을 바탕으로 주 1회, 10주간 스터디를 진행합니다.',
-            imgGradient: 'from-blue-400 to-main'
+            imgGradient: 'from-blue-400 to-main',
+            image: new URL('../assets/activities/study.webp', import.meta.url).href
+        },
+        {
+            title: '연합 네트워킹 데이',
+            desc: '전수 전 기수가 모여 서로의 경험을 공유하고 성장을 도모하는 연합 행사입니다.',
+            imgGradient: 'from-blue-400 to-main',
+            image: new URL('../assets/activities/networkingday.jpg', import.meta.url).href
         },
         {
             title: 'PM Day',
-            tag: 'Networking',
-            desc: '각 팀의 PM, 디자이너, 개발자들이 모여 다양한 관점에서 프로젝트를 바라보고, 각자의 경험을 나누며 발전을 도모합니다.',
-            imgGradient: 'from-purple-400 to-main'
+            desc: '각 팀의 PM들이 모여 기획 역량을 강화하고 프로젝트 방향성을 점검하는 시간입니다.',
+            imgGradient: 'from-purple-400 to-main',
+            image: new URL('../assets/activities/pmday.jpg', import.meta.url).href
         },
         {
             title: '너디너리 해커톤',
-            tag: 'Big Event',
             desc: '26개 대학에서 모인 부원들이 한 팀이 되어, 기획부터 개발까지 전 과정을 경험하는 대규모 해커톤입니다.',
-            imgGradient: 'from-orange-400 to-main'
+            imgGradient: 'from-orange-400 to-main',
+            image: new URL('../assets/activities/N_hackathon.JPG', import.meta.url).href
         },
         {
             title: 'UMC 해커톤',
-            tag: 'Internal',
-            desc: 'UMC 부원들만을 대상으로 하며, 혁신적인 아이디어를 내고 단기간 내에 실용적인 결과물을 만들어냅니다.',
-            imgGradient: 'from-pink-400 to-main'
+            desc: 'UMC 부원들만을 대상으로 하며, 혁신적인 아이디어를 내고 단기 집중 개발을 통해 결과물을 만들어냅니다.',
+            imgGradient: 'from-pink-400 to-main',
+            image: new URL('../assets/activities/U_hackathon.jpeg', import.meta.url).href
+        },
+        {
+            title: 'UMCON',
+            desc: 'UMC의 지식 공유 컨퍼런스로, 각 파트별 기술적 경험과 프로젝트 노하우를 나눕니다.',
+            imgGradient: 'from-pink-400 to-main',
+            image: new URL('../assets/activities/umcon.jpg', import.meta.url).href
+        },
+        {
+            title: 'FSDay',
+            desc: 'Final Selection Day. 프로젝트 팀 빌딩과 기획 발표가 이루어지는 중요한 시작점입니다.',
+            imgGradient: 'from-pink-400 to-main',
+            image: new URL('../assets/activities/fsday.jpg', import.meta.url).href
         },
         {
             title: '데모데이',
-            tag: 'Final Stage',
             desc: '그동안 갈고닦은 실력을 세상에 선보이는 자리입니다. 실제 사용자를 고려한 완성도 있는 결과물을 선보이는 무대입니다.',
-            imgGradient: 'from-green-400 to-main'
+            imgGradient: 'from-green-400 to-main',
+            image: new URL('../assets/activities/Demoday.JPG', import.meta.url).href
         }
     ];
 
     const universities = [
-        "서울여자대학교", "성신여자대학교", "숭실대학교", "이화여자대학교",
-        "동덕여자대학교", "명지대학교", "숙명여자대학교", "전북대학교",
-        "서경대학교", "국민대학교", "중앙대학교", "연세대학교",
-        "고려대학교", "한양대학교", "경희대학교", "한국외국어대학교",
-        "서울시립대학교", "건국대학교", "동국대학교", "홍익대학교",
-        "아주대학교", "인하대학교"
+        "중앙대학교", "숭실대학교", "동덕여자대학교", "단국대학교",
+        "안양대학교", "한양대학교 ERICA", "한국공학대학교", "가천대학교",
+        "동국대학교", "성신여자대학교", "한성대학교", "한국외국어대학교", "가톨릭대학교",
+        "홍익대학교 서울캠퍼스", "홍익대학교 세종캠퍼스", "이화여자대학교", "한국항공대학교",
+        "광운대학교", "서울여자대학교", "덕성여자대학교", "서경대학교", "동양미래대학교",
+        "동아대학교", "영남대학교", "울산대학교", "인제대학교"
     ];
 
     const timelineData = [
@@ -196,7 +216,7 @@ const HomePage: React.FC = () => {
                             SKUMC에서는 <br className="md:hidden" /> <span className="text-main">어떤 활동</span>을 할 수 있나요?
                         </h2>
                         <div className="w-20 h-1.5 bg-main/20 mx-auto rounded-full" />
-                        <p className="mt-8 text-gray-400 font-medium text-sm md:text-base">카드를 옆으로 밀어서 더 많은 활동을 확인해보세요</p>
+                        <p className="mt-8 text-gray-400 font-medium text-sm md:text-base">카드를 옆으로 밀어서 더 많은 활동을 확인해보세요.</p>
                     </motion.div>
                 </div>
 
@@ -244,20 +264,27 @@ const HomePage: React.FC = () => {
                                     key={act.title}
                                     className="shrink-0 w-[85%] md:w-[400px] bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col"
                                 >
-                                    {/* Image Placeholder Area */}
+                                    {/* Image Area */}
                                     <div className="h-56 w-full relative overflow-hidden bg-gray-100">
                                         <div className={`absolute inset-0 bg-gradient-to-br ${act.imgGradient} opacity-20`} />
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                        </div>
-                                        {/* Activity Tag Overlay */}
-                                        <div className="absolute top-6 left-6">
-                                            <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md text-gray-900 text-[10px] font-black rounded-full uppercase tracking-widest shadow-sm">
-                                                {act.tag}
-                                            </span>
-                                        </div>
+
+                                        {/* Image with Fallback */}
+                                        {act.image ? (
+                                            <img
+                                                src={act.image}
+                                                alt={act.title}
+                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                onError={(e) => {
+                                                    (e.target as HTMLImageElement).style.display = 'none';
+                                                }}
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Content Area */}
@@ -432,7 +459,7 @@ const HomePage: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => navigate(ROUTES.APPLY)}
+                            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSf5eVU8FrVgNjc0QYoYviPNtJBZwWWb9Jp45ySW5pft7Hv1Fg/viewform', '_blank')}
                             className="group relative px-14 py-6 bg-white text-gray-900 text-xl font-black rounded-2xl overflow-hidden transition-all shadow-[0_0_40px_rgba(0,255,85,0.2)] hover:shadow-main/40"
                         >
                             <span className="relative z-10 flex items-center gap-4">

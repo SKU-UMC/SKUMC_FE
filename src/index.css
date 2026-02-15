@@ -2,7 +2,7 @@
 
 /* 1. Reset & Fonts */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Paperlogy:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css');
 
 /* 2. Theme Configuration */
 @theme {
@@ -59,7 +59,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold tracking-tight text-[var(--foreground)];
+    @apply font-display font-bold tracking-tight text-[var(--foreground)];
     line-height: 1.25;
   }
 
