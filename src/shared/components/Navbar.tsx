@@ -1,9 +1,5 @@
-import React from 'react';
-import { useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../routes/routes';
-import { motion, AnimatePresence } from 'framer-motion';
-import GoogleIcon from '../../assets/google-icon-logo.svg?react';
 import Logo from './Logo';
 
 interface NavbarProps {
@@ -18,19 +14,8 @@ interface NavbarProps {
     externalTooltipMessage?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, externalTooltipMessage }) => {
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
     const location = useLocation();
-    const [isHovered, setIsHovered] = useState(false);
-
-    const tooltipMessage = useMemo(() => {
-        if (externalTooltipMessage) return externalTooltipMessage;
-        return isHovered ? '서경대 계정으로 로그인' : undefined;
-    }, [externalTooltipMessage, isHovered]);
-
-    const shouldShowTooltip = tooltipMessage !== undefined;
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     return (
         <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
@@ -47,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, external
                                 홈
                             </Link>
                             <Link to={ROUTES.APPLY} className={`text-sm font-medium ${location.pathname.startsWith(ROUTES.APPLY) ? 'text-main' : 'text-gray-600 hover:text-main'}`}>
-                                지원하기
+                                모집요강
                             </Link>
                             {isLoggedIn && (
                                 <Link to={ROUTES.ADMIN} className={`text-sm font-medium ${location.pathname.startsWith(ROUTES.ADMIN) ? 'text-main' : 'text-gray-600 hover:text-main'}`}>
@@ -58,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, external
                     </div>
 
                     <div className="flex items-center space-x-4">
-                        {isLoggedIn ? (
+                        {/* {isLoggedIn ? (
                             <div className="flex items-center space-x-4">
                                 <AnimatePresence>
                                     {externalTooltipMessage && (
@@ -103,14 +88,12 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, onLogin, onLogout, external
                                             className="absolute right-full top-1/2 mr-3 w-max rounded-md bg-gray-900 text-white text-xs px-3 py-2 shadow-lg"
                                         >
                                             {tooltipMessage}
-                                            {/* Right arrow for tooltip */}
                                             <div className="absolute top-1/2 -right-1 -mt-1 border-4 border-transparent border-l-gray-900" />
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
                             </div>
-                        )}
-
+                        )} */}
                     </div>
                 </div>
             </div>

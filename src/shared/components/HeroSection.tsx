@@ -125,7 +125,7 @@ const HeroSection: React.FC = () => {
                             우리는 끊임없이 <span className="text-main font-bold">소통</span>하고 <span className="text-main font-bold">성장</span>합니다.
                         </p>
                         <p className="text-gray-400 max-w-lg mx-auto leading-relaxed">
-                            10기 SKUMC와 함께 새로운 여정을 시작하세요.
+                            10기 서경대 UMC와 함께 새로운 여정을 시작하세요.
                         </p>
                     </div>
 
@@ -134,7 +134,7 @@ const HeroSection: React.FC = () => {
                             onClick={() => navigate(ROUTES.APPLY)}
                             className="group relative px-12 py-5 bg-gray-900 text-white text-lg font-bold rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl"
                         >
-                            <span className="relative z-10">지금 바로 지원하기</span>
+                            <span className="relative z-10">모집 요강 보러가기</span>
                             <div className="absolute inset-0 bg-main opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <span className="absolute inset-0 bg-main blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
                         </button>
