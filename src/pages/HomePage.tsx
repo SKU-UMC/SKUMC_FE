@@ -456,7 +456,7 @@ const HomePage: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSf5eVU8FrVgNjc0QYoYviPNtJBZwWWb9Jp45ySW5pft7Hv1Fg/viewform', '_blank')}
+                            onClick={() => window.open('https://forms.gle/r3x4BHxhdouGeR59A', '_blank')}
                             className="group relative px-14 py-6 bg-white text-gray-900 text-xl font-black rounded-2xl overflow-hidden transition-all shadow-[0_0_40px_rgba(0,255,85,0.2)] hover:shadow-main/40"
                         >
                             <span className="relative z-10 flex items-center gap-4">
