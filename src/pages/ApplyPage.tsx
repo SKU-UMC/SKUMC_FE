@@ -11,7 +11,7 @@ const ApplyPage: React.FC = () => {
 
     const handleApply = () => {
         // 구글 폼 또는 외부 지원 링크
-        window.open('https://docs.google.com/forms/d/e/1FAIpQLSf5eVU8FrVgNjc0QYoYviPNtJBZwWWb9Jp45ySW5pft7Hv1Fg/viewform', '_blank');
+        window.open('https://forms.gle/r3x4BHxhdouGeR59A', '_blank');
     };
 
     const fadeIn = {
